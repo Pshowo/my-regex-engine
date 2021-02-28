@@ -35,11 +35,15 @@ def compare_word(word):
         return False
     elif len(reg) <= 1 and len(word) <= 1:
         return my_regex(reg+"|"+word)
-
+    elif reg.startswith("^"):
+        if word.startswith(reg[1:]):
+            return True
+        else:
+            return False
     elif not my_regex(reg[0]+"|"+word[0]):
         return compare_word(reg+"|"+word[1:])
     else:
         return compare_word(reg[1:]+"|"+word[1:])        
 
 
-print(compare_word('tion|Section'))
+print(compare_word('^app|apple'))
