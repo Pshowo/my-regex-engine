@@ -26,6 +26,13 @@ class test_regex(unittest.TestCase):
         self.assertEqual(compare_word('peach|apple'),  False)
         self.assertEqual(compare_word('|apple'),  True)
         self.assertEqual(compare_word('apple|'),  False)
+        self.assertEqual(compare_word('ap|apple'),  True)
+        self.assertEqual(compare_word('le|apple'),  True)
+        self.assertEqual(compare_word('a|apple'),  True)
+        self.assertEqual(compare_word('.|apple'),  True)
+        self.assertEqual(compare_word('apwle|apple'),  False)
+        """
+        """
 
 if __name__=="__main__":
     unittest.main()

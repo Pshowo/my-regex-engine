@@ -37,12 +37,9 @@ def compare_word(word):
         return my_regex(reg+"|"+word)
 
     elif not my_regex(reg[0]+"|"+word[0]):
-        return False
+        return compare_word(reg+"|"+word[1:])
     else:
-        # print(reg[0], word[0])
-        return compare_word(reg[1:]+"|"+word[1:])
-
-        
+        return compare_word(reg[1:]+"|"+word[1:])        
 
 
-print(compare_word("a|"))
+print(compare_word('tion|Section'))
