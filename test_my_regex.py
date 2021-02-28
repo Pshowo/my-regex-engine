@@ -36,10 +36,10 @@ class test_regex(unittest.TestCase):
 
         self.assertEqual(compare_word('^app|apple'),  True)
         self.assertEqual(compare_word('^a|apple'),  True)
+        self.assertEqual(compare_word('^a.|apple'),  True)
         self.assertEqual(compare_word('^le|apple'),  False)
         self.assertEqual(compare_word('^apple|apple pie'),  True)
 
-        """
         self.assertEqual(compare_word('le$|apple'),  True)
         self.assertEqual(compare_word('.$|apple'),  True)
         self.assertEqual(compare_word('app$|apple'),  False)
@@ -48,6 +48,7 @@ class test_regex(unittest.TestCase):
         self.assertEqual(compare_word('^apple$|apple'),  True)
         self.assertEqual(compare_word('^apple$|tasty apple'),  False)
         self.assertEqual(compare_word('^apple$|apple pie'),  False)
+        """
 
         """
 
