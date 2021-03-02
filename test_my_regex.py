@@ -48,6 +48,11 @@ class test_regex(unittest.TestCase):
         self.assertEqual(compare_word('^apple$|apple'),  True)
         self.assertEqual(compare_word('^apple$|tasty apple'),  False)
         self.assertEqual(compare_word('^apple$|apple pie'),  False)
+        
+        self.assertEqual(compare_word('colou?r|color'),  True)
+        self.assertEqual(compare_word('colou?r|colour'),  True)
+        self.assertEqual(compare_word('colou?r|colouur'),  False)
+
         """
 
         """
