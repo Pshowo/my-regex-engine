@@ -53,8 +53,36 @@ class test_regex(unittest.TestCase):
         self.assertEqual(compare_word('colou?r|colour'),  True)
         self.assertEqual(compare_word('colou?r|colouur'),  False)
 
-        """
+        self.assertEqual(compare_word('colou*r|color'),  True)
+        self.assertEqual(compare_word('colou*r|colour'),  True)
+        self.assertEqual(compare_word('colou*r|colouur'),  True)
+        self.assertEqual(compare_word('colou*r|colouuuuur'),  True)
 
+        self.assertEqual(compare_word('colou+r|color'),  False)
+        self.assertEqual(compare_word('colou+r|colour'),  True)
+        self.assertEqual(compare_word('colou+r|colouur'),  True)
+        self.assertEqual(compare_word('colou+r|colouur'),  True)
+        self.assertEqual(compare_word('colou+r|colouuuuur'),  True)
+
+        self.assertEqual(compare_word('col.*r|color'),  True)
+        self.assertEqual(compare_word('col.*r|colour'),  True)
+        self.assertEqual(compare_word('col.*r|colr'),  True)
+        self.assertEqual(compare_word('col.*r|collar'),  True)
+        self.assertEqual(compare_word('col.*r|collar'),  True)
+        self.assertEqual(compare_word('col.*r$|colors'),  True)
+
+        self.assertEqual(compare_word('.+|aaa'),  True)
+        """
+        self.assertEqual(compare_word('^no+pe$|noooooooope'),  True)
+        self.assertEqual(compare_word('^n.+pe$|noooooooope'),  True)
+
+        self.assertEqual(compare_word('\.$|end.'),  True)
+        self.assertEqual(compare_word('3\+3|3+3=6'),  True)
+        self.assertEqual(compare_word('\?|Is this working?'),  True)
+        self.assertEqual(compare_word("\\|\\"),  True)
+        self.assertEqual(compare_word("colou\?r|color"),  False)
+        self.assertEqual(compare_word("colou\?r|colour"),  False)
+    
         """
 
 if __name__=="__main__":
