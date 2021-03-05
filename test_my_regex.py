@@ -1,15 +1,15 @@
 import unittest
 from my_regex import *
 
-class test_regex(unittest.TestCase):
+class test_my_regex(unittest.TestCase):
 
-    def test_my_regex(self):
-        self.assertEqual(my_regex('a|a'), True)
-        self.assertEqual(my_regex('.|a'), True)
-        self.assertEqual(my_regex( '|a'), True)
-        self.assertEqual(my_regex( '|'),  True)
-        self.assertEqual(my_regex('a|'),  False)
-        self.assertEqual(my_regex('a|b'),  False)
+    def test_compare_char(self):
+        self.assertEqual(compare_char('a','a'),  True)
+        self.assertEqual(compare_char('.','a'),  True)
+        self.assertEqual(compare_char( '','a'),  True)
+        self.assertEqual(compare_char( '',''),  True)
+        self.assertEqual(compare_char('a',''),  False)
+        self.assertEqual(compare_char('a','b'),  False)
 
     def test_compare_word(self):
         self.assertEqual(compare_word('a|a'),  True)
@@ -33,12 +33,16 @@ class test_regex(unittest.TestCase):
         self.assertEqual(compare_word('a|apple'),  True)
         self.assertEqual(compare_word('.|apple'),  True)
         self.assertEqual(compare_word('apwle|apple'),  False)
+        self.assertEqual(compare_word('tion|Section'),  True)
+
 
         self.assertEqual(compare_word('^app|apple'),  True)
         self.assertEqual(compare_word('^a|apple'),  True)
         self.assertEqual(compare_word('^a.|apple'),  True)
         self.assertEqual(compare_word('^le|apple'),  False)
         self.assertEqual(compare_word('^apple|apple pie'),  True)
+        self.assertEqual(compare_word('^nope|noooooooope'),  False)
+        self.assertEqual(compare_word('^nooo|noooooooope'),  True)
 
         self.assertEqual(compare_word('le$|apple'),  True)
         self.assertEqual(compare_word('.$|apple'),  True)
@@ -64,18 +68,22 @@ class test_regex(unittest.TestCase):
         self.assertEqual(compare_word('colou+r|colouur'),  True)
         self.assertEqual(compare_word('colou+r|colouuuuur'),  True)
 
+        self.assertEqual(compare_word('col.*r$|colors'),  False)
         self.assertEqual(compare_word('col.*r|color'),  True)
         self.assertEqual(compare_word('col.*r|colour'),  True)
         self.assertEqual(compare_word('col.*r|colr'),  True)
         self.assertEqual(compare_word('col.*r|collar'),  True)
         self.assertEqual(compare_word('col.*r|collar'),  True)
-        self.assertEqual(compare_word('col.*r$|colors'),  True)
 
         self.assertEqual(compare_word('.+|aaa'),  True)
-        """
+        self.assertEqual(compare_word('.*|aaa'),  True)
+        self.assertEqual(compare_word('.?|aaa'),  True)
         self.assertEqual(compare_word('^no+pe$|noooooooope'),  True)
         self.assertEqual(compare_word('^n.+pe$|noooooooope'),  True)
+        self.assertEqual(compare_word('^no+|noooooooope'),  True)
+        self.assertEqual(compare_word('^n.+p$|noooooooope'),  False)
 
+        """
         self.assertEqual(compare_word('\.$|end.'),  True)
         self.assertEqual(compare_word('3\+3|3+3=6'),  True)
         self.assertEqual(compare_word('\?|Is this working?'),  True)
