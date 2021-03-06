@@ -83,13 +83,13 @@ class test_my_regex(unittest.TestCase):
         self.assertEqual(compare_word('^no+|noooooooope'),  True)
         self.assertEqual(compare_word('^n.+p$|noooooooope'),  False)
 
-        """
         self.assertEqual(compare_word('\.$|end.'),  True)
         self.assertEqual(compare_word('3\+3|3+3=6'),  True)
         self.assertEqual(compare_word('\?|Is this working?'),  True)
         self.assertEqual(compare_word("\\|\\"),  True)
         self.assertEqual(compare_word("colou\?r|color"),  False)
         self.assertEqual(compare_word("colou\?r|colour"),  False)
+        """
     
         """
 
