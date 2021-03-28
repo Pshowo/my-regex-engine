@@ -1,6 +1,7 @@
 # my-regex-engine
 
-regex | phraze
+input syntax: "regex | phraze"
+return: True or False 
 
 ## Objectives
 
